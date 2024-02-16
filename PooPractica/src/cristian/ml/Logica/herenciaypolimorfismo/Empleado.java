@@ -1,4 +1,4 @@
-package cristian.ml.Logica;
+package cristian.ml.Logica.herenciaypolimorfismo;
 
 public class Empleado extends Persona{
     int numLegajo;
