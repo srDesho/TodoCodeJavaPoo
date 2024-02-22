@@ -39,13 +39,12 @@ public class GestorProductos {
         System.out.println("El producto existe = " + existeONo);
     }
 
-    public void actualizarProducto(Integer id, String nombre, Double precio, EnumCategoria categoria) throws ProductoDuplicadoException {
+    public void actualizarProducto(Integer id, String nombre, Double precio) throws ProductoDuplicadoException {
         try {
             if (listaProductos.containsKey(id)) {
                 IProducto produc = listaProductos.get(id);
                 produc.setNombre(nombre);
                 produc.setPrecio(precio);
-                produc.setCategoria(categoria);
                 System.out.println("Actualizado satisfactoriamente.");
             } else {
                 throw new ProductoDuplicadoException();
