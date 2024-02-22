@@ -1,0 +1,47 @@
+Ejercicio: Sistema de Registro de Productos
+
+Objetivo:
+
+Desarrollar un sistema de registro de productos para una tienda, que permita almacenar, buscar, actualizar y eliminar información de productos utilizando un HashMap. Los productos serán diferenciados por categorías como electrónica, vestimenta, y alimentos.
+
+Requerimientos:
+
+1. Interfaz Producto:
+
+	Métodos para obtener y establecer el ID, nombre, precio, y categoría del producto.
+2. Clase Abstracta ProductoBase:
+
+	- Implementa la interfaz Producto.
+	- Proporciona implementaciones base para los getters y setters, utilizando clases Wrapper para los tipos de datos primitivos (por 	ejemplo, Double para el precio).
+	- Define un método abstracto calcularImpuesto() que será implementado por las subclases.
+
+3. Subclases de ProductoBase:
+
+	- Electronica, Vestimenta, Alimentos, cada una con su propia implementación del método calcularImpuesto().
+
+4. Clase GestorProductos:
+
+	- Utiliza un HashMap<Integer, Producto> para almacenar la información de los productos, donde la clave es el ID del producto.
+	- Métodos para:
+		- Agregar un producto: Lanza una excepción personalizada si se intenta agregar un producto con un ID que ya existe.
+		- Buscar un producto por ID: Utiliza el operador ternario para verificar si el producto existe. Si no existe, devuelve un 		mensaje apropiado.
+		- Actualizar información de un producto: Permite actualizar el nombre, precio, y categoría de un producto existente. 			Utiliza el manejo de excepciones para validar los datos.
+		- Eliminar un producto: Verifica primero si el producto existe antes de eliminarlo, usando el operador ternario.
+
+5. Excepciones Personalizadas:
+
+	- Crea al menos una excepción personalizada para manejar situaciones específicas (por ejemplo, ProductoNoEncontradoException o 	IdDuplicadoException).
+
+6. Programa Principal (Main):
+
+	- Crea una interfaz de usuario simple en la consola que permita al usuario interactuar con el sistema de registro de productos.
+	- Implementa un menú con opciones para agregar, buscar, actualizar y eliminar productos, así como para listar todos los productos.
+	- Asegúrate de capturar y manejar las excepciones adecuadamente, mostrando mensajes de error amigables al usuario.
+
+Consideraciones Adicionales:
+
+	- Utiliza el operador ternario donde sea más conveniente para simplificar tu código.
+	- Aprovecha las clases Wrapper para trabajar con tipos de datos primitivos.
+	- Asegúrate de que todas las entradas del usuario sean validadas adecuadamente, utilizando manejo de excepciones para capturar y 	tratar cualquier entrada inválida.
+
+Este ejercicio te permitirá practicar con conceptos avanzados de Java, incluyendo el uso de interfaces, clases abstractas, manejo de colecciones, manejo de excepciones, y más, en un proyecto de tamaño moderado que simula una aplicación real.
