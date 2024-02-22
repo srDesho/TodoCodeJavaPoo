@@ -14,7 +14,7 @@ public class Main {
         Vestimenta ves2 = new Vestimenta(1126, "short", 75.21, EnumCategoria.VESTIMENTA);
         Vestimenta ves3 = new Vestimenta(1127, "polera", 45.21, EnumCategoria.VESTIMENTA);
         Alimento al1 = new Alimento(1128, "papa", 4.5, EnumCategoria.ALIMENTO);
-        Alimento al2 = new Alimento(1128, "tomate", 5.5, EnumCategoria.ALIMENTO);
+        Alimento al2 = new Alimento(1129, "tomate", 5.5, EnumCategoria.ALIMENTO);
 
         gp.agregarProducto(elec1.getId_producto(), elec1);
         gp.agregarProducto(elec2.getId_producto(), elec2);
@@ -24,11 +24,13 @@ public class Main {
         gp.agregarProducto(ves3.getId_producto(), ves3);
         gp.agregarProducto(al1.getId_producto(), al1);
         gp.agregarProducto(al2.getId_producto(), al2);
+        System.out.println();
 
         // Bucle do while para volver ejecutar el programa
         int opcion;
         do {
-            int id;
+            int id = 0;
+            Double precio = 0.0;
             System.out.println("Seleccione una opción:");
             System.out.println("1. Agregar un Producto");
             System.out.println("2. Buscar un Producto");
@@ -50,7 +52,6 @@ public class Main {
                         // Agregar producto
                         opcion = scan.nextInt();
                         String nombre;
-                        Double precio;
                         switch (opcion) {
                             case 1:
                                 System.out.println("Ingrese el id del Producto Electronica: ");
@@ -99,12 +100,35 @@ public class Main {
                     break;
 
                 case 3:
-                    System.out.println("Ingrese el Id del producto que desea actualizar");
-                    id = scan.nextInt();
-                    System.out.println("Ingrese un nombre para el producto");
+                    // Validamos los datos mientras son cargados
+                    boolean esValido;
+                    do {
+                        System.out.println("Ingrese el Id del producto que desea actualizar");
+                        if (scan.hasNextInt()) {
+                            id = scan.nextInt();
+                            esValido = true;
+                        } else {
+                            System.out.println("El dato ingresado no es un nro válido, ingrese el id nuevamenete.");
+                            esValido = false;
+                            scan.next(); // Limpiar buffer del scanner para volver a ejecutar en limpio
+                        }
+                    } while (!esValido);
+
+                    System.out.println("Ingrese un nombre para el producto: ");
                     String nombre = scan.next();
-                    System.out.println("Ingrese el precio: ");
-                    Double precio = scan.nextDouble();
+
+                    do {
+                        System.out.println("Ingrese el precio: ");
+                        if (scan.hasNextInt()) {
+                             precio = scan.nextDouble();
+                            esValido = true;
+                        } else {
+                            System.out.println("El dato ingresado no es un nro válido, ingrese el precio nuevamente.");
+                            esValido = false;
+                            scan.next();
+                        }
+                    } while (!esValido);
+
                     gp.actualizarProducto(id, nombre, precio);
                     break;
 
