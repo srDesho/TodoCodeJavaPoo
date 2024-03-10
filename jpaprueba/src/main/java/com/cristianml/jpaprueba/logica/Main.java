@@ -16,6 +16,42 @@ public class Main {
         // -> cambiamos nombre implementando al final "PU", seleccionamos nuestra conexión
         // creada anteriormente y seleccionamos "create".
         
+        // ¿Qué es ORM?
+        // Mapeo Objeto-Realacional, es una técnica que nos permite convertir clases
+        // (y sus relaciones) de un sistema creado con POO al modelado de una bd relacional.
+        // El mapeo lo hacemos mediante annotations de java, los mas usados son:
+        // @Entity: Especifica la creación de una entidad. Se coloca al inicio de la 
+        // definición de una clase.
+        // @Id: Primary Key de la entidad
+            // @GeneratedValue(strategy=GenerationType.SEQUENCE): Establece que la id
+            // Se va a generar de forma automática y secuencial.
+        // @Basic: Para hacer referencia a atributos comúnes.
+        // @Temporal: Se usa normalmente en fechas.
+            // Si se quiere tomar en cuenta la hora se utiliza: 
+            // @Temporal(TemporalType.TIMESTAMP)
+            // Si sólo se quiere en cuenta la fecha(DATE):
+            // @Temporal(TemporalType.DATE)
+        // @OneToMany: Indicar una relación unidireccional de 1 a N.
+        // @OneToOne: Indicar relación 1 a 1.
+        // @ManyToMany: Indicar relación N a N.
         
+        
+        // Luego creamos el controller, el cual nos creará las tablas en nuestra bd
+        // para que después podamos manipularla, seguimos los stgs pasos:
+        // right clic en nuestro paquete persistencia -> new -> other -> persistence
+        // -> jpa controler from entity classes -> seleccionamos nuestras clases -> next
+        // -> seleccionamos nuestro paquete persistencia -> finish.
+        // Se nos creará una clase con métodos para manipular nuestros datos.
+        // En esa clase creamos un constructor que llama al primer constructor,
+        // nos permitirá instanciar nuestro objeto, creamos el constructor:
+        // public nombreDeNuestraClaseController(){
+        // emf = Percistence.createEntityManagerFactory("nombreNuestraUnidadPersistencia")}
+        
+        // Luego podríamos crear una clase llamada ControladoraPersistencia, para que estén
+        // todas las instancias.
+        // la creamos como una clase normal y creamos nuestras instancias de las clases que
+        // están siendo mapeadas con el ORM.
+        
+        // Al final para crear las tablas, instanciamos nuestra controladora en el método main.
     }
 }
