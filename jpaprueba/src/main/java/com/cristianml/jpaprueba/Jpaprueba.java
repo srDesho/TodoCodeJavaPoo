@@ -1,5 +1,6 @@
 package com.cristianml.jpaprueba;
 import com.cristianml.jpaprueba.logica.Alumno;
+import com.cristianml.jpaprueba.logica.Carrera;
 import com.cristianml.jpaprueba.logica.ControladoraLogica;
 import com.cristianml.jpaprueba.persistencia.ControladoraPersistencia;
 import java.util.ArrayList;
@@ -71,7 +72,7 @@ public class Jpaprueba {
            
         // Creamos la instancia de la controladora lógica
         
-        ControladoraLogica control = new ControladoraLogica();
+        // ControladoraLogica control = new ControladoraLogica();
         /*Alumno alu = new Alumno(13, "Maribel", "Huanca", new Date());
         control.crearAlumno(alu);*/
         
@@ -83,6 +84,7 @@ public class Jpaprueba {
          control.editarAlumno(alu);*/
         
         // Método find para buscar y traer un alumno de la bd
+        /*
         System.out.println("------------------------find------------------------");
         System.out.println("El alumno buscado: " + control.traerAlumno(10));
         System.out.println();
@@ -92,6 +94,24 @@ public class Jpaprueba {
         for(Alumno alu : lista) {
             System.out.println("Alumno: " + alu);
         }
+        */
         
+        // Hacemos ejemplo desde un inicio pero ya con la relación OneToOne
+        // Instanciamos nuestra ControladoraLogica
+        ControladoraLogica control = new ControladoraLogica();
+        
+        // Creamos una carrera y pasamos a la persistencia
+        Carrera carrera1 = new Carrera(10, "Ing. Informática");
+        control.crearCarrera(carrera1);
+        
+        // Creamos un alumno asociando la carrera y agregando a la db
+        Alumno alu = new Alumno(10, "Cristian", "Montaño", new Date(), carrera1);
+        control.crearAlumno(alu);
+        
+        // Buscamos y mostramos al alumno
+        System.out.println("-----------------------DATOS DEL ALUMNO--------------------------");
+        Alumno alumno = control.traerAlumno(10);
+        System.out.println("Alumno: " + alumno.getNombre() + " " + alumno.getApellido());
+        System.out.println("Cursa la carrera: " + alumno.getCarre().getNombre());
     }
 }

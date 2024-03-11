@@ -14,15 +14,19 @@ public class Alumno implements Serializable {
     private String apellido;
     @Temporal(TemporalType.DATE)
     private Date fecha;
+    
+    @OneToOne
+    private Carrera carre;
 
     public Alumno() {
     }
 
-    public Alumno(int id, String nombre, String apellido, Date fecha) {
+    public Alumno(int id, String nombre, String apellido, Date fecha, Carrera carre) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.fecha = fecha;
+        this.carre = carre;
     }
 
     public int getId() {
@@ -57,10 +61,19 @@ public class Alumno implements Serializable {
         this.fecha = fecha;
     }
 
+    public Carrera getCarre() {
+        return carre;
+    }
+
+    public void setCarre(Carrera carre) {
+        this.carre = carre;
+    }
+
     @Override
     public String toString() {
-        return "Alumno{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", fecha=" + fecha + '}';
+        return "Alumno{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", fecha=" + fecha + ", carre=" + carre + '}';
     }
+
     
     
 }
