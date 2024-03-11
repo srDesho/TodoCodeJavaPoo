@@ -12,4 +12,8 @@ public class ControladoraLogica {
     public void eliminarAlumno (int id) {
         controlPersis.eliminarAlumno(id);
     }
+    
+    public void editarAlumno (Alumno alu) {
+        controlPersis.editarAlumno(alu);
+    }
 }

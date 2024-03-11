@@ -71,10 +71,15 @@ public class Jpaprueba {
         // Creamos la instancia de la controladora lógica
         
         ControladoraLogica control = new ControladoraLogica();
-        /* Alumno alu = new Alumno(13, "Maribel", "Huanca", new Date());
-        control.crearAlumno(alu); */
+        Alumno alu = new Alumno(13, "Maribel", "Huanca", new Date());
+        control.crearAlumno(alu);
         
         // Eliminando un alumno
-        control.eliminarAlumno(13);
+        // control.eliminarAlumno(13);
+        
+        // Modificar un Alumno
+         alu.setApellido("Garrido");
+         control.editarAlumno(alu);
+        
     }
 }
