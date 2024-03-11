@@ -8,4 +8,8 @@ public class ControladoraLogica {
     public void crearAlumno(Alumno alu) {
         controlPersis.crearAlumno(alu);
     }
+    
+    public void eliminarAlumno (int id) {
+        controlPersis.eliminarAlumno(id);
+    }
 }
