@@ -56,6 +56,11 @@ public class Alumno implements Serializable {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
+    @Override
+    public String toString() {
+        return "Alumno{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", fecha=" + fecha + '}';
+    }
     
     
 }

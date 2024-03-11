@@ -1,6 +1,7 @@
 package com.cristianml.jpaprueba.logica;
 
 import com.cristianml.jpaprueba.persistencia.ControladoraPersistencia;
+import java.util.ArrayList;
 
 public class ControladoraLogica {
     ControladoraPersistencia controlPersis = new ControladoraPersistencia();
@@ -15,5 +16,13 @@ public class ControladoraLogica {
     
     public void editarAlumno (Alumno alu) {
         controlPersis.editarAlumno(alu);
+    }
+    
+    public Alumno traerAlumno(int id) {
+        return controlPersis.traerAlumno(id);
+    }
+    
+    public ArrayList<Alumno> traerListaAlumnos(){
+        return controlPersis.traerListaAlumnos();
     }
 }

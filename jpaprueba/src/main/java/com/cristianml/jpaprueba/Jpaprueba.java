@@ -2,6 +2,7 @@ package com.cristianml.jpaprueba;
 import com.cristianml.jpaprueba.logica.Alumno;
 import com.cristianml.jpaprueba.logica.ControladoraLogica;
 import com.cristianml.jpaprueba.persistencia.ControladoraPersistencia;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Jpaprueba {
@@ -71,15 +72,26 @@ public class Jpaprueba {
         // Creamos la instancia de la controladora lógica
         
         ControladoraLogica control = new ControladoraLogica();
-        Alumno alu = new Alumno(13, "Maribel", "Huanca", new Date());
-        control.crearAlumno(alu);
+        /*Alumno alu = new Alumno(13, "Maribel", "Huanca", new Date());
+        control.crearAlumno(alu);*/
         
         // Eliminando un alumno
         // control.eliminarAlumno(13);
         
         // Modificar un Alumno
-         alu.setApellido("Garrido");
-         control.editarAlumno(alu);
+         /*alu.setApellido("Garrido");
+         control.editarAlumno(alu);*/
+        
+        // Método find para buscar y traer un alumno de la bd
+        System.out.println("------------------------find------------------------");
+        System.out.println("El alumno buscado: " + control.traerAlumno(10));
+        System.out.println();
+        // Método findEntities para traer la lista completa de la entidad de bd
+        System.out.println("------------------------findEntities------------------------");
+        ArrayList<Alumno> lista = control.traerListaAlumnos();
+        for(Alumno alu : lista) {
+            System.out.println("Alumno: " + alu);
+        }
         
     }
 }
