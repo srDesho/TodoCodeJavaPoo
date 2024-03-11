@@ -1,5 +1,8 @@
 package com.cristianml.jpaprueba;
+import com.cristianml.jpaprueba.logica.Alumno;
+import com.cristianml.jpaprueba.logica.ControladoraLogica;
 import com.cristianml.jpaprueba.persistencia.ControladoraPersistencia;
+import java.util.Date;
 
 public class Jpaprueba {
     public static void main(String[] args) {
@@ -55,10 +58,19 @@ public class Jpaprueba {
         // la creamos como una clase normal y creamos nuestras instancias de las clases que
         // están siendo mapeadas con el ORM.
         
-        // Al final para crear las tablas, instanciamos nuestra controladora en el método main.
+        // Al final para crear las tablas, instanciamos nuestra controladora en el método main
+        // o depende de dónde vamos a recibir los datos, puede ser de la interface Gráfica
         
-        // ControladoraPersistencia controlPersis = new ControladoraPersistencia();
-        
-        ControladoraPersistencia controlPersis = new ControladoraPersistencia();
+        // Para eso creamos una clase controladora en la capa de lógica(model), para que
+        // pueda recibir un objeto(datos) y pueda vincular con la JPAcontroller y así mismo
+        // comunicarse con la base de datos.
+        // en la clase Controladora creada agregamos la instancia de la ControladoraPersistencia
+        // las cuales ambas tendrán un método de agregar, un alta en la bd(obvio tendrán más métodos)
+        // como altas, bajas, modificación y lectura.
+           
+        // Creamos la instancia de la controladora lógica
+        ControladoraLogica control = new ControladoraLogica();
+        Alumno alu = new Alumno(13, "Maribel", "Huanca", new Date());
+        control.crearAlumno(alu);
     }
 }
