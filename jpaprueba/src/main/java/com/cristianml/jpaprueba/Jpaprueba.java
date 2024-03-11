@@ -1,14 +1,17 @@
-package com.cristianml.jpaprueba.logica;
+package com.cristianml.jpaprueba;
+import com.cristianml.jpaprueba.persistencia.ControladoraPersistencia;
 
-public class Main {
+public class Jpaprueba {
     public static void main(String[] args) {
+        
         // JPA = JAVA PERSISTENCE API, is an intermediary that allows us to 
         // communicate our application with database by mapping through java annotations in parts of our project
         // to convert classes into entities, variables into attributes, etc.
         // We must to add the dependency mysql on pom.xml or add with right clic on Dependencies
         // we connect database in Services -> clic derecho en databases
         // -> new connection -> add mysql (si no lo tenemos) -> usuarios -> asus -> .m2 
-        // -> repositories -> mysql -> ..... -> ......
+        // -> repositories -> mysql -> ..... -> ...... -> cambiamos esto: zeroDateTimeBehavior=CONVERT_TO_NULL
+        // -> por esto: serverTimezone=UTC
         // Luego agregamos la base de datos dando clic derecho en databases seleccionando mysql
         // agregamos los valores del servidor y escribimos el nombre de la bd
         // luego creamos la unidad de persistencia en nuestro proyecto, dentro de la capa
@@ -53,5 +56,9 @@ public class Main {
         // están siendo mapeadas con el ORM.
         
         // Al final para crear las tablas, instanciamos nuestra controladora en el método main.
+        
+        // ControladoraPersistencia controlPersis = new ControladoraPersistencia();
+        
+        ControladoraPersistencia controlPersis = new ControladoraPersistencia();
     }
 }
