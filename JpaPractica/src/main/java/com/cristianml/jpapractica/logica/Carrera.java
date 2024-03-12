@@ -1,21 +1,26 @@
 package com.cristianml.jpapractica.logica;
 
+import java.io.Serializable;
 import java.util.LinkedList;
+import javax.persistence.*;
 
+@Entity
 public class Carrera {
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private int id;
+    
     private String nombre;
     
-    private Alumno alumno;
+    @OneToMany(mappedBy = "carre")
     private LinkedList<Materia> listaMaterias;
 
     public Carrera() {
     }
 
-    public Carrera(int id, String nombre, Alumno alumno, LinkedList<Materia> listaMaterias) {
+    public Carrera(int id, String nombre, LinkedList<Materia> listaMaterias) {
         this.id = id;
         this.nombre = nombre;
-        this.alumno = alumno;
         this.listaMaterias = listaMaterias;
     }
 
@@ -33,14 +38,6 @@ public class Carrera {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public Alumno getAlumno() {
-        return alumno;
-    }
-
-    public void setAlumno(Alumno alumno) {
-        this.alumno = alumno;
     }
 
     public LinkedList<Materia> getListaMaterias() {
