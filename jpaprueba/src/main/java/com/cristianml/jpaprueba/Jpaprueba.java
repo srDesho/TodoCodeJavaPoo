@@ -2,9 +2,11 @@ package com.cristianml.jpaprueba;
 import com.cristianml.jpaprueba.logica.Alumno;
 import com.cristianml.jpaprueba.logica.Carrera;
 import com.cristianml.jpaprueba.logica.ControladoraLogica;
+import com.cristianml.jpaprueba.logica.Materia;
 import com.cristianml.jpaprueba.persistencia.ControladoraPersistencia;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 
 public class Jpaprueba {
     public static void main(String[] args) {
@@ -96,14 +98,36 @@ public class Jpaprueba {
         }
         */
         
-        // Hacemos ejemplo desde un inicio pero ya con la relación OneToOne
+        // Hacemos ejemplo desde un inicio pero ya con la relación OneToOne y OneToMany
         // Instanciamos nuestra ControladoraLogica
         ControladoraLogica control = new ControladoraLogica();
         
-        // Creamos una carrera y pasamos a la persistencia
-        Carrera carrera1 = new Carrera(10, "Ing. Informática");
-        control.crearCarrera(carrera1);
+        // Creamos 1ro la lista vacía para que se puedan asociar ambas tablas OneToMany en la bd
+        LinkedList<Materia> listaMaterias = new LinkedList<>();
+        // creamos la carrera antes de la materia porque las materias necesitan asociarse después
+        // a la tabla Carrera
+        Carrera carrera1 = new Carrera(10, "Ing. Informática", listaMaterias);
+        control.crearCarrera(carrera1); // Agregamos a la base de datos
         
+        // Creamos materias asociando la carrera
+        Materia mate1 = new Materia(10, "Prgramación I", "Trimestral", carrera1);
+        Materia mate2 = new Materia(11, "Matemáticas para la informática", "Trimestral", carrera1);
+        Materia mate3 = new Materia(12, "Sistemas Operativos", "Trimestral", carrera1);
+        // Guardamos a la bd
+        control.crearMateria(mate1);
+        control.crearMateria(mate2);
+        control.crearMateria(mate3);
+        
+        // Agregamos la lista de materias a la clase Carrera
+        listaMaterias.add(mate1);
+        listaMaterias.add(mate2);
+        listaMaterias.add(mate3);
+        // Agregamos la lista de Materias a la clase carrera 
+        carrera1.setListaMaterias(listaMaterias);
+        
+        // editamos la entidad Carrera para agregar la lista de materias en la bd
+        control.editarCarrera(carrera1);
+      
         // Creamos un alumno asociando la carrera y agregando a la db
         Alumno alu = new Alumno(10, "Cristian", "Montaño", new Date(), carrera1);
         control.crearAlumno(alu);

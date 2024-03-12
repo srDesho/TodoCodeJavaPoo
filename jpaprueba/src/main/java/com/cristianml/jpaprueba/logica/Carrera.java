@@ -1,6 +1,7 @@
 package com.cristianml.jpaprueba.logica;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 import javax.persistence.*;
 
 @Entity
@@ -10,15 +11,21 @@ public class Carrera implements Serializable {
     private int id;
     @Basic
     private String nombre;
+    
+    @OneToMany(mappedBy = "carre") // Mapeamos para que se asocien ambas entidades
+    private LinkedList<Materia> listaMaterias;
 
     public Carrera() {
     }
 
-    public Carrera(int id, String nombre) {
+    public Carrera(int id, String nombre, LinkedList<Materia> listaMaterias) {
         this.id = id;
         this.nombre = nombre;
+        this.listaMaterias = listaMaterias;
     }
 
+    
+     
     public int getId() {
         return id;
     }
@@ -35,10 +42,12 @@ public class Carrera implements Serializable {
         this.nombre = nombre;
     }
 
-    @Override
-    public String toString() {
-        return "Carrera{" + "id=" + id + ", nombre=" + nombre + '}';
+    public LinkedList<Materia> getListaMaterias() {
+        return listaMaterias;
     }
-    
+
+    public void setListaMaterias(LinkedList<Materia> listaMaterias) {
+        this.listaMaterias = listaMaterias;
+    }
     
 }
