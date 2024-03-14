@@ -47,6 +47,11 @@ public class Carrera implements Serializable {
     public void setListaMaterias(LinkedList<Materia> listaMaterias) {
         this.listaMaterias = listaMaterias;
     }
+
+    @Override
+    public String toString() {
+        return "Carrera{" + "id=" + id + ", nombre=" + nombre + ", listaMaterias=" + listaMaterias + '}';
+    }
     
     
 }
