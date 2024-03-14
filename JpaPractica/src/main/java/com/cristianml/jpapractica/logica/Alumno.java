@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Entity
-public class Alumno {
+public class Alumno implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)

@@ -5,11 +5,11 @@ import java.util.LinkedList;
 import javax.persistence.*;
 
 @Entity
-public class Carrera {
+public class Carrera implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private int id;
-    
+    @Basic
     private String nombre;
     
     @OneToMany(mappedBy = "carre")
