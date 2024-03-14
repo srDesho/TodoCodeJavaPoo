@@ -59,7 +59,7 @@ public class Materia implements Serializable {
 
     @Override
     public String toString() {
-        return "Materia{" + "id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + ", carre=" + carre + '}';
+        return "Materia{" + "id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + ", carre=" + carre.getId() + '}';
     }
     
     
