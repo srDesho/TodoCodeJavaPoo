@@ -56,5 +56,12 @@ public class Materia implements Serializable {
     public void setCarre(Carrera carre) {
         this.carre = carre;
     }
+
+    @Override
+    public String toString() {
+        return "Materia{" + "id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + ", carre=" + carre + '}';
+    }
+    
+    
     
 }
