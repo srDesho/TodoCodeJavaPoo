@@ -1,10 +1,11 @@
 
 package com.cristianml.peluqueriacanina.logica;
 
+import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-public class Duenio {
+public class Duenio implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;

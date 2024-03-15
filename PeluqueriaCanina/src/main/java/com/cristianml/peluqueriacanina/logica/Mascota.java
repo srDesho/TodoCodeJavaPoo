@@ -1,9 +1,10 @@
 package com.cristianml.peluqueriacanina.logica;
 
+import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-public class Mascota {
+public class Mascota implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int num_cliente;
