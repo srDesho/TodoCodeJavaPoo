@@ -1,7 +1,13 @@
 package com.cristianml.peluqueriacanina.logica;
 
+import javax.persistence.*;
+
+@Entity
 public class Mascota {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int num_cliente;
+    
     private String nombre;
     private String raza;
     private String color;
@@ -9,6 +15,7 @@ public class Mascota {
     private String atencio_especial;
     private String observaciones;
     
+    @OneToOne
     private Duenio unDuenio;
 
     public Mascota() {

@@ -1,17 +1,20 @@
 
 package com.cristianml.peluqueriacanina.logica;
 
+import javax.persistence.*;
 
+@Entity
 public class Duenio {
- private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private int id;
     private String nombre;
     private String celular;
-    private String direccion;
 
     public Duenio() {
     }
 
-    public Duenio(int id, String nombre, String celular, String direccion) {
+    public Duenio(int id, String nombre, String celular) {
         this.id = id;
         this.nombre = nombre;
         this.celular = celular;
@@ -39,13 +42,5 @@ public class Duenio {
 
     public void setCelular(String celular) {
         this.celular = celular;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
     }
 }
