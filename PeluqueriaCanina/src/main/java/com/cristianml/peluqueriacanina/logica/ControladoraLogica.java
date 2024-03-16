@@ -1,6 +1,7 @@
 package com.cristianml.peluqueriacanina.logica;
 
 import com.cristianml.peluqueriacanina.persistencia.ControladoraPersistencia;
+import java.util.List;
 
 public class ControladoraLogica {
     ControladoraPersistencia controlPersis = new ControladoraPersistencia();
@@ -24,6 +25,10 @@ public class ControladoraLogica {
         masco.setUnDuenio(duenio);
         
         controlPersis.guardar(duenio, masco);
+    }
+
+    public List<Mascota> traerListaMascota() {
+        return controlPersis.traerListaMascota();
     }
     
 }

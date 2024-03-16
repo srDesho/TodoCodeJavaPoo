@@ -1,8 +1,17 @@
 package com.cristianml.peluqueriacanina.igu;
 
+import com.cristianml.peluqueriacanina.logica.ControladoraLogica;
+import com.cristianml.peluqueriacanina.logica.Mascota;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 public class VerDatos extends javax.swing.JFrame {
+    
+    
+    ControladoraLogica control = null;
 
     public VerDatos() {
+        control = new ControladoraLogica();
         initComponents();
     }
 
@@ -14,12 +23,17 @@ public class VerDatos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabla = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jLabel1.setText("Ver lista de Datos");
@@ -27,7 +41,7 @@ public class VerDatos extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabla);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Lista de mascotas:");
@@ -103,9 +117,10 @@ public class VerDatos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    // Definimos el método cargar datos
-    
-    
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        cargarDatos();
+    }//GEN-LAST:event_formWindowOpened
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
@@ -114,6 +129,35 @@ public class VerDatos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
+
+    // Definimos el método cargar datos
+    private void cargarDatos() {
+        // Definimos el modelo de la tabla
+        DefaultTableModel tablaModel = new DefaultTableModel(){
+        
+        // Hacer que filas y columnas no sean editables
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        // Establecemos nombres de las columnas
+        String[] titulos = {"Id", "Nombre", "Raza", "Color", "Alérgico", "At. Especial", "Dueño", "Celular"};
+        tablaModel.setColumnIdentifiers(titulos);
+        
+        // Cargar los datos desde la bd
+        List <Mascota> listaMasco = control.traerListaMascota();
+        
+        // Recorrer la lista y mostrar cada uno de los elementos en la tabla
+        if (listaMasco != null) {
+            for(Mascota masco : listaMasco) {
+                Object[] objMasco = {masco.getNum_cliente(), masco.getNombre(), masco.getRaza(), masco.getColor(), masco.getAlergico()
+                , masco.getAtencio_especial(), masco.getUnDuenio().getNombre(), masco.getUnDuenio().getCelular()};
+                tablaModel.addRow(objMasco);
+            }
+        }
+        tabla.setModel(tablaModel);
+    }
 }
