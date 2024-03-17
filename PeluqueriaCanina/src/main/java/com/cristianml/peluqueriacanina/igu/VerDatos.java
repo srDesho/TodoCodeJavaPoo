@@ -3,6 +3,8 @@ package com.cristianml.peluqueriacanina.igu;
 import com.cristianml.peluqueriacanina.logica.ControladoraLogica;
 import com.cristianml.peluqueriacanina.logica.Mascota;
 import java.util.List;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class VerDatos extends javax.swing.JFrame {
@@ -39,7 +41,7 @@ public class VerDatos extends javax.swing.JFrame {
         jLabel1.setText("Ver lista de Datos");
         jLabel1.setName("lblTitulo"); // NOI18N
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jScrollPane1.setViewportView(tabla);
 
@@ -49,6 +51,11 @@ public class VerDatos extends javax.swing.JFrame {
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconEditar.png"))); // NOI18N
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconBorrar.png"))); // NOI18N
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -121,6 +128,25 @@ public class VerDatos extends javax.swing.JFrame {
         cargarDatos();
     }//GEN-LAST:event_formWindowOpened
 
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // Verificamos si la tabla tiene elementos
+        if(tabla.getRowCount()>0) {
+            // Verificamos que haya un elemento seleccionado
+            if(tabla.getSelectedRow()!=-1) {
+                int idMasco = Integer.parseInt(String.valueOf(tabla.getValueAt(tabla.getSelectedRow(), 0)));
+                System.out.println(idMasco);
+                control.eliminarMascota(idMasco);
+                mostrarMensaje("Eliminado existoso.");
+                cargarDatos();
+            } else {
+                mostrarMensaje("No seleccionó ningún elemento.");
+            }
+        } else {
+            mostrarMensaje("La tabla está vacía.");
+        }
+        
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
@@ -159,5 +185,20 @@ public class VerDatos extends javax.swing.JFrame {
             }
         }
         tabla.setModel(tablaModel);
+    }
+    
+    // Actualizar tabla
+    public void actualizarTabla() {
+        tabla.setModel(null);
+        cargarDatos();
+    }
+    
+    // Mostrar mensaje
+    public void mostrarMensaje (String mensaje) {
+        JOptionPane optionPane = new JOptionPane(mensaje);
+        optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        JDialog dialog = optionPane.createDialog("Alerta");
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
     }
 }

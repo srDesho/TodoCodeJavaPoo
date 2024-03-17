@@ -31,4 +31,9 @@ public class ControladoraLogica {
         return controlPersis.traerListaMascota();
     }
     
+    // Método eliminar
+    public void eliminarMascota(int idMasco) {
+        controlPersis.eliminarMascota(idMasco);
+    }
+    
 }
