@@ -3,7 +3,6 @@ package com.cristianml.peluqueriacanina.persistencia;
 import com.cristianml.peluqueriacanina.logica.Duenio;
 import com.cristianml.peluqueriacanina.logica.Mascota;
 import com.cristianml.peluqueriacanina.persistencia.exceptions.NonexistentEntityException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,5 +35,14 @@ public class ControladoraPersistencia {
     
     public Mascota traerMascota(int id) {
         return mascoJpa.findMascota(id);
+    }
+
+    public void modificarDatos(Duenio duenio, Mascota masco) {
+        try {
+            mascoJpa.edit(masco);
+            duenioJpa.edit(duenio);
+        } catch (Exception ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

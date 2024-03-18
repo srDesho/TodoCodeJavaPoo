@@ -36,4 +36,26 @@ public class ControladoraLogica {
         controlPersis.eliminarMascota(idMasco);
     }
     
+    // Traer Mascota
+    public Mascota traerMascota (int idMasco) {
+        return controlPersis.traerMascota(idMasco);
+    }
+
+    public void modificarMascota(Mascota masco, String nombreMasco, String raza, String color, String alergico
+                , String atencioEsp, String obs, String nombreDuenio, String celDuenio) {
+        // Obtengo el Objeto Dueño mediante la mascota
+        Duenio duenio = masco.getUnDuenio();
+        duenio.setNombre(nombreDuenio);
+        duenio.setCelular(celDuenio);
+        
+        masco.setNombre(nombreMasco);
+        masco.setColor(color);
+        masco.setRaza(raza);
+        masco.setAlergico(alergico);
+        masco.setAtencio_especial(atencioEsp);
+        masco.setUnDuenio(duenio);
+        
+        controlPersis.modificarDatos(duenio, masco);
+    }
+
 }

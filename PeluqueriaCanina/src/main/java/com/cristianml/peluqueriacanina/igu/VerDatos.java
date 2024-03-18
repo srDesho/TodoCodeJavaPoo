@@ -49,6 +49,11 @@ public class VerDatos extends javax.swing.JFrame {
         jLabel2.setText("Lista de mascotas:");
 
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconEditar.png"))); // NOI18N
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconBorrar.png"))); // NOI18N
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -136,16 +141,29 @@ public class VerDatos extends javax.swing.JFrame {
                 int idMasco = Integer.parseInt(String.valueOf(tabla.getValueAt(tabla.getSelectedRow(), 0)));
                 System.out.println(idMasco);
                 control.eliminarMascota(idMasco);
-                mostrarMensaje("Eliminado existoso.");
+                mostrarMensaje("Eliminado existoso.", "info", "Iformación");
                 cargarDatos();
             } else {
-                mostrarMensaje("No seleccionó ningún elemento.");
+                mostrarMensaje("No seleccionó ningún elemento.", "error", "Error elemento no seleccionado");
             }
         } else {
-            mostrarMensaje("La tabla está vacía.");
+            mostrarMensaje("La tabla está vacía.", "error", "Error, tabla vacía");
         }
         
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        
+        if (tabla.getRowCount() > 0){
+            if (tabla.getSelectedRow() != -1) {
+                int idMasco = Integer.parseInt(String.valueOf(tabla.getValueAt(tabla.getSelectedRow(), 0)));
+                EditarDatos editar = new EditarDatos(idMasco);
+                editar.setVisible(true);
+                editar.setLocationRelativeTo(null);
+            }
+        }
+        
+    }//GEN-LAST:event_btnEditarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
@@ -194,10 +212,14 @@ public class VerDatos extends javax.swing.JFrame {
     }
     
     // Mostrar mensaje
-    public void mostrarMensaje (String mensaje) {
+    public void mostrarMensaje (String mensaje, String tipo, String titulo) {
         JOptionPane optionPane = new JOptionPane(mensaje);
-        optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
-        JDialog dialog = optionPane.createDialog("Alerta");
+        if (tipo.equals("info")) {
+            optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        } else if (tipo.equals("error")) {
+            optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
+        }
+        JDialog dialog = optionPane.createDialog(titulo);
         dialog.setAlwaysOnTop(true);
         dialog.setVisible(true);
     }
