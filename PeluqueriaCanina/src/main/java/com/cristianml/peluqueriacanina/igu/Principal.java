@@ -42,6 +42,11 @@ public class Principal extends javax.swing.JFrame {
 
         btnSalir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         btnVerDatos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnVerDatos.setText("Ver Datos");
@@ -145,6 +150,11 @@ public class Principal extends javax.swing.JFrame {
         pantalla.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_btnCargarDatosActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // Finalizamos la aplicación
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     
     public void setImageLabel(JLabel lblName, String root){
