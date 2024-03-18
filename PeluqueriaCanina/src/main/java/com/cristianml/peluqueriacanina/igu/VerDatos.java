@@ -161,7 +161,11 @@ public class VerDatos extends javax.swing.JFrame {
                 editar.setVisible(true);
                 editar.setLocationRelativeTo(null);
                 this.dispose();
+            } else {
+                mostrarMensaje("Ningún elemento seleccionado.", "error", "Error elemento no seleccionado.");
             }
+        } else {
+            mostrarMensaje("La tabla se encuentra vacía.", "error", "Tabla vacía.");
         }
         
     }//GEN-LAST:event_btnEditarActionPerformed
