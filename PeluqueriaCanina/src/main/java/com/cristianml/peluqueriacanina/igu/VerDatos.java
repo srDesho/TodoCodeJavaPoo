@@ -160,6 +160,7 @@ public class VerDatos extends javax.swing.JFrame {
                 EditarDatos editar = new EditarDatos(idMasco);
                 editar.setVisible(true);
                 editar.setLocationRelativeTo(null);
+                this.dispose();
             }
         }
         

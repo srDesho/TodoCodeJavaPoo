@@ -48,7 +48,7 @@ public class EditarDatos extends javax.swing.JFrame {
         txtObs = new javax.swing.JTextField();
         lblLogoCargaDato = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
-        btnLimpiar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -198,12 +198,12 @@ public class EditarDatos extends javax.swing.JFrame {
             }
         });
 
-        btnLimpiar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/limpiarIcon.png"))); // NOI18N
-        btnLimpiar.setText(" Limpiar");
-        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/limpiarIcon.png"))); // NOI18N
+        btnCancelar.setText(" Cancelar Edición");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimpiarActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
@@ -219,12 +219,11 @@ public class EditarDatos extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(121, 121, 121)
+                        .addComponent(btnCancelar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblLogoCargaDato, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -247,7 +246,7 @@ public class EditarDatos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -289,9 +288,11 @@ public class EditarDatos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCelDuenioActionPerformed
 
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        limpiarDatos();
-    }//GEN-LAST:event_btnLimpiarActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        this.dispose();
+        redireccionarAPantallaDatos();
+        
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         masco = control.traerMascota(idMasco);
@@ -299,15 +300,11 @@ public class EditarDatos extends javax.swing.JFrame {
                 , (String) cmbAlergico.getSelectedItem(), (String) cmbAEspecial.getSelectedItem(), txtObs.getText()
                 , txtNomDuenio.getText(), txtCelDuenio.getText());;
         
-        JOptionPane optionPane = new JOptionPane("Agregado correctamente");
-        optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
-        JDialog dialog = optionPane.createDialog("Guardado Exitoso");
-        dialog.setAlwaysOnTop(true);
-        dialog.setVisible(true);
-        limpiarDatos();
-        VerDatos pantallaDatos = new VerDatos();
-        pantallaDatos.setVisible(true);
-        pantallaDatos.setAlwaysOnTop(false);
+        // Mostramos el mensaje de guardado
+        mostrarMensaje("Modificación exitosa", "info", "Edición de datos");
+        this.dispose();
+        // Redireccionamos a la ventana VerDatos
+        redireccionarAPantallaDatos();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     public void setImageLabel(JLabel lblName, String root){
@@ -317,21 +314,10 @@ public class EditarDatos extends javax.swing.JFrame {
         lblName.setIcon(icon);
         this.repaint();
     }
-    
-    public void limpiarDatos(){
-        txtNombre.setText("");
-        txtRaza.setText("");
-        txtColor.setText("");
-        txtObs.setText("");
-        txtNomDuenio.setText("");
-        txtCelDuenio.setText("");
-        cmbAlergico.setSelectedIndex(0);
-        cmbAEspecial.setSelectedIndex(0);
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton btnLimpiar;
     private javax.swing.JComboBox<String> cmbAEspecial;
     private javax.swing.JComboBox<String> cmbAlergico;
     private javax.swing.JLabel jLabel1;
@@ -374,6 +360,23 @@ public class EditarDatos extends javax.swing.JFrame {
             cmbAEspecial.setSelectedIndex(2);
         }
     }
-
     
+    // Mostrar mensaje
+    public void mostrarMensaje (String mensaje, String tipo, String titulo) {
+        JOptionPane optionPane = new JOptionPane(mensaje);
+        if (tipo.equals("info")) {
+            optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        } else if (tipo.equals("error")) {
+            optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
+        }
+        JDialog dialog = optionPane.createDialog(titulo);
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
+    }
+    
+    public void redireccionarAPantallaDatos() {
+        VerDatos ventanaDatos = new VerDatos();
+        ventanaDatos.setVisible(true);
+        ventanaDatos.setLocationRelativeTo(null);
+    }
 }

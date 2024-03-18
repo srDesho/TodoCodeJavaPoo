@@ -293,11 +293,8 @@ public class CargaDatos extends javax.swing.JFrame {
                 , (String) cmbAlergico.getSelectedItem(), (String) cmbAEspecial.getSelectedItem(), txtObs.getText()
                 , txtNomDuenio.getText(), txtCelDuenio.getText());
         
-        JOptionPane optionPane = new JOptionPane("Agregado correctamente");
-        optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
-        JDialog dialog = optionPane.createDialog("Guardado Exitoso");
-        dialog.setAlwaysOnTop(true);
-        dialog.setVisible(true);
+        // Mostramos mensaje de guardado
+        mostrarMensaje("Guardado exitoso.", "info", "Guardado de datos");
         limpiarDatos();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -347,5 +344,18 @@ public class CargaDatos extends javax.swing.JFrame {
 
     void setVisible(CargaDatos pantalla) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    // Mostrar mensaje
+    public void mostrarMensaje (String mensaje, String tipo, String titulo) {
+        JOptionPane optionPane = new JOptionPane(mensaje);
+        if (tipo.equals("info")) {
+            optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        } else if (tipo.equals("error")) {
+            optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
+        }
+        JDialog dialog = optionPane.createDialog(titulo);
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
     }
 }
