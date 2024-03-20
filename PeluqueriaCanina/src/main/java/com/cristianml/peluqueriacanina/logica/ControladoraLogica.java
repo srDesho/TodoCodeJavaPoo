@@ -53,6 +53,7 @@ public class ControladoraLogica {
         masco.setRaza(raza);
         masco.setAlergico(alergico);
         masco.setAtencio_especial(atencioEsp);
+        masco.setObservaciones(obs);
         masco.setUnDuenio(duenio);
         
         controlPersis.modificarDatos(duenio, masco);
