@@ -1,10 +1,11 @@
 package com.cristianml.loginpractice.logic;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
 
 @Entity
-public class Role {
+public class Role implements Serializable {
     @Id
     private int idRole;
     @Basic
