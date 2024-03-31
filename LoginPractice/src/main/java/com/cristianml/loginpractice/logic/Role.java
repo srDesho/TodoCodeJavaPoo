@@ -1,13 +1,16 @@
 package com.cristianml.loginpractice.logic;
 
 import java.util.List;
+import javax.persistence.*;
 
-
-
+@Entity
 public class Role {
+    @Id
     private int idRole;
+    @Basic
     private String roleName;
     private String description;
+    @OneToMany(mappedBy = "unRol")
     private List<User> userList;
 
     public Role() {

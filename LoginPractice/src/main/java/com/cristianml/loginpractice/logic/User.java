@@ -1,9 +1,16 @@
 package com.cristianml.loginpractice.logic;
 
+import javax.persistence.*;
+
+@Entity
 public class User {
+    @Id
     private int idUser;
+    @Basic
     private String user;
     private String pass;
+    @ManyToOne
+    @JoinColumn(name = "idRole")
     private Role unRole;
 
     public User() {
