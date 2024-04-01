@@ -37,7 +37,7 @@ public class UserJpaController implements Serializable {
             em.getTransaction().begin();
             Role unRole = user.getUnRole();
             if (unRole != null) {
-                unRole = em.getReference(unRole.getClass(), unRole.getIdRole());
+                unRole = em.getReference(unRole.getClass(), unRole.getId());
                 user.setUnRole(unRole);
             }
             em.persist(user);
@@ -47,7 +47,7 @@ public class UserJpaController implements Serializable {
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findUser(user.getIdUser()) != null) {
+            if (findUser(user.getId()) != null) {
                 throw new PreexistingEntityException("User " + user + " already exists.", ex);
             }
             throw ex;
@@ -63,11 +63,11 @@ public class UserJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            User persistentUser = em.find(User.class, user.getIdUser());
+            User persistentUser = em.find(User.class, user.getId());
             Role unRoleOld = persistentUser.getUnRole();
             Role unRoleNew = user.getUnRole();
             if (unRoleNew != null) {
-                unRoleNew = em.getReference(unRoleNew.getClass(), unRoleNew.getIdRole());
+                unRoleNew = em.getReference(unRoleNew.getClass(), unRoleNew.getId());
                 user.setUnRole(unRoleNew);
             }
             user = em.merge(user);
@@ -83,7 +83,7 @@ public class UserJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                int id = user.getIdUser();
+                int id = user.getId();
                 if (findUser(id) == null) {
                     throw new NonexistentEntityException("The user with id " + id + " no longer exists.");
                 }
@@ -104,7 +104,7 @@ public class UserJpaController implements Serializable {
             User user;
             try {
                 user = em.getReference(User.class, id);
-                user.getIdUser();
+                user.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The user with id " + id + " no longer exists.", enfe);
             }

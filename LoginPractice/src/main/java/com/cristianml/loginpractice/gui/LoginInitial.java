@@ -1,10 +1,15 @@
 
 package com.cristianml.loginpractice.gui;
 
+import com.cristianml.loginpractice.logic.Controller;
+import com.cristianml.loginpractice.logic.User;
+
 public class LoginInitial extends javax.swing.JFrame {
 
+    Controller control = null;
     public LoginInitial() {
         initComponents();
+        control = new Controller();
     }
 
     @SuppressWarnings("unchecked")
@@ -131,11 +136,17 @@ public class LoginInitial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCleanActionPerformed
-      
+      txtUsername.setText("");
+      txtPass.setText("");
     }//GEN-LAST:event_btnCleanActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-
+        User user = control.validateDatas(txtUsername.getText(), txtPass.getText());
+        if (user != null) {
+          txtMessage.setText("Welcome bro.");
+        } else {
+          txtMessage.setText("User or password incorrect");
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -6,38 +6,38 @@ import javax.persistence.*;
 @Entity
 public class User implements Serializable {
     @Id
-    private int idUser;
+    private int id;
     @Basic
-    private String user;
+    private String username;
     private String pass;
     @ManyToOne
-    @JoinColumn(name = "idRole")
+    @JoinColumn(name = "fk_role")
     private Role unRole;
 
     public User() {
     }
 
-    public User(int idUser, String user, String pass, Role unRole) {
-        this.idUser = idUser;
-        this.user = user;
+    public User(int id, String username, String pass, Role unRole) {
+        this.id = id;
+        this.username = username;
         this.pass = pass;
         this.unRole = unRole;
     }
 
-    public int getIdUser() {
-        return idUser;
+    public int getId() {
+        return id;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUsername(String user) {
+        this.username = user;
     }
 
     public String getPass() {
