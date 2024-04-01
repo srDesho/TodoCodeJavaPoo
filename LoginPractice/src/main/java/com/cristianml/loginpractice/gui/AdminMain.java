@@ -182,10 +182,20 @@ public class AdminMain extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRefreshTableActionPerformed
 
     private void btnEditUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditUserActionPerformed
-        // int idUser = Integer.parseInt(String.valueOf(table.getValueAt(table.getSelectedRow(), 0)));
-        // System.out.println("idUser=> " + idUser);
-        // User usr = control.bringUser(idUser);
-        // Validate the user
+        if (table.getRowCount() > 0) {
+            if (table.getSelectedRow() != -1) {
+                int idUser = Integer.parseInt(String.valueOf(table.getValueAt(table.getSelectedRow(), 0)));
+                User usr = control.bringUser(idUser);
+                EditUser editUser = new EditUser(control, usr);
+                editUser.setVisible(true);
+                editUser.setLocationRelativeTo(null);
+                this.dispose();
+            } else {
+                showMessage("Error, no row selected.", "error", "Error, row selected");
+            }
+        } else {
+            showMessage("Error, empty table.", "error", "empty table.");
+        }
     }//GEN-LAST:event_btnEditUserActionPerformed
 
     private void btnDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteUserActionPerformed
@@ -220,6 +230,19 @@ public class AdminMain extends javax.swing.JFrame {
         }
         
         table.setModel(tableModel);
+    }
+    
+    private void showMessage(String message, String type, String title) {
+        JOptionPane optionPane = new JOptionPane(message);
+        if(type.equals("info")) {
+            optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(type.equals("error")) {
+            optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
+        }
+        JDialog dialog = optionPane.createDialog(title);
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

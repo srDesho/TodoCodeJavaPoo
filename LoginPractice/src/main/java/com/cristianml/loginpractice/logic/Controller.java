@@ -64,4 +64,26 @@ public class Controller {
         List<User> userList = persisControl.BringUserList();
         return userList.get(userList.size() - 1).getId();
     }    
+
+    public void editUser(User user, String username, String pass, String role) {
+        user.setUsername(username);
+        user.setPass(pass);
+        
+        Role rol = bringRole(role);
+        if (rol != null) {
+            user.setUnRole(rol);
+        }
+        persisControl.editUser(user);
+    }
+
+    private Role bringRole(String role) {
+        List<Role> roleList = persisControl.bringRoleList();
+        if (roleList != null) {
+            for (Role role1 : roleList) {
+                if ( role1.getRoleName().equals(role))
+                    return role1;
+            }
+        }
+        return null;
+    }
 }
