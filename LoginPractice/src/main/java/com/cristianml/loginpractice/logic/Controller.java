@@ -2,6 +2,8 @@ package com.cristianml.loginpractice.logic;
 
 import com.cristianml.loginpractice.persistence.PersistenceController;
 import java.util.List;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
 
 public class Controller {
     PersistenceController persisControl = new PersistenceController();
@@ -29,5 +31,37 @@ public class Controller {
         return persisControl.BringUserList();
     }
 
-    
+    public User bringUser(int id) {
+        return persisControl.bringUser(id);
+    }
+
+    public List<Role> bringRoleList() {
+        return persisControl.bringRoleList();
+    }
+
+    public void createUser(String username, String pass, String role) {
+        User usr = new User();
+        // Add the id manually
+        int idUser = getLastId();
+        usr.setId(idUser + 1);
+        usr.setUsername(username);
+        usr.setPass(pass);
+        
+        // Add role
+        List<Role> roleList = persisControl.bringRoleList();
+        if (roleList != null) {
+            for (Role rol : roleList) {
+                if (rol.getRoleName().equals(role)) {
+                    usr.setUnRole(rol);
+                }
+            }
+        }
+        
+        persisControl.createUser(usr);
+    }
+
+    private int getLastId() {
+        List<User> userList = persisControl.BringUserList();
+        return userList.get(userList.size() - 1).getId();
+    }    
 }

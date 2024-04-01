@@ -170,6 +170,10 @@ public class AdminMain extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnCreateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateUserActionPerformed
+            CreateUser createUser = new CreateUser(control, usr);
+            createUser.setVisible(true);
+            createUser.setLocationRelativeTo(null);
+            this.dispose();
         
     }//GEN-LAST:event_btnCreateUserActionPerformed
 
@@ -178,7 +182,10 @@ public class AdminMain extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRefreshTableActionPerformed
 
     private void btnEditUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditUserActionPerformed
-        
+        // int idUser = Integer.parseInt(String.valueOf(table.getValueAt(table.getSelectedRow(), 0)));
+        // System.out.println("idUser=> " + idUser);
+        // User usr = control.bringUser(idUser);
+        // Validate the user
     }//GEN-LAST:event_btnEditUserActionPerformed
 
     private void btnDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteUserActionPerformed
