@@ -143,7 +143,20 @@ public class LoginInitial extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         User user = control.validateDatas(txtUsername.getText(), txtPass.getText());
         if (user != null) {
-          txtMessage.setText("Welcome bro.");
+          txtMessage.setText("Correct data, welcome user " + user.getUsername());
+          if (user.getUnRole().getRoleName().equals("admin")) {
+              AdminMain admin = new AdminMain(control, user);
+              admin.setVisible(true);
+              admin.setLocationRelativeTo(null);
+              this.dispose();
+          }
+          if (user.getUnRole().getRoleName().equals("user")) {
+              UserMain userM = new UserMain(control, user);
+              userM.setVisible(true);
+              userM.setLocationRelativeTo(null);
+              this.dispose();
+          }
+          
         } else {
           txtMessage.setText("User or password incorrect");
         }
