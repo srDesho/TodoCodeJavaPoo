@@ -113,7 +113,10 @@ public class UserMain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-       
+        LoginInitial login = new LoginInitial();
+        login.setVisible(true);
+        login.setLocationRelativeTo(null);
+        this.dispose();       
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnRefreshTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshTableActionPerformed

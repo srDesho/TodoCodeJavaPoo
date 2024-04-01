@@ -162,7 +162,10 @@ public class AdminMain extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUserNameActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        
+        LoginInitial login = new LoginInitial();
+        login.setVisible(true);
+        login.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnCreateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateUserActionPerformed
