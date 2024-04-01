@@ -15,6 +15,7 @@ public class AdminMain extends javax.swing.JFrame {
         initComponents();
         this.control = control;
         this.usr = usr;
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -173,7 +174,7 @@ public class AdminMain extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCreateUserActionPerformed
 
     private void btnRefreshTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshTableActionPerformed
-        
+        loadData();
     }//GEN-LAST:event_btnRefreshTableActionPerformed
 
     private void btnEditUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditUserActionPerformed
@@ -187,8 +188,33 @@ public class AdminMain extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // Set username to the textField
         txtUserName.setText(usr.getUsername());
+        loadData();
     }//GEN-LAST:event_formWindowOpened
 
+    // Get the data form database
+    public void loadData() {
+        DefaultTableModel tableModel = new DefaultTableModel() {
+            // Avoid that the fields are editables
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        
+        // Adding column name to the table
+        String[] titles = {"Id", "Username", "Role"};
+        tableModel.setColumnIdentifiers(titles);
+        
+        // Get the userList
+        List<User> userList = control.bringUserList();
+        for (User user : userList) {
+            Object[] userObj = {user.getId(), user.getUsername(), user.getUnRole().getRoleName()};
+            tableModel.addRow(userObj);
+        }
+        
+        table.setModel(tableModel);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateUser;
     private javax.swing.JButton btnDeleteUser;

@@ -25,6 +25,9 @@ public class Controller {
         return usr;
     }
 
-    
+    public List<User> bringUserList() {
+        return persisControl.BringUserList();
+    }
+
     
 }
