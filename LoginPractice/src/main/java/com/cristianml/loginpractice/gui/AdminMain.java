@@ -199,7 +199,18 @@ public class AdminMain extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditUserActionPerformed
 
     private void btnDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteUserActionPerformed
-        
+        if (table.getRowCount() > 0) {
+            if (table.getSelectedRow() != -1) {
+                int idUser = Integer.parseInt(String.valueOf(table.getValueAt(table.getSelectedRow(), 0)));
+                control.deleteUser(idUser);
+                showMessage("Deleted succesfully.", "info", "deleted user.");
+                loadData();
+            } else {
+                showMessage("Error, no row selected.", "error", "Error, row selected");
+            }
+        } else {
+            showMessage("Error, empty table.", "error", "empty table.");
+        }
     }//GEN-LAST:event_btnDeleteUserActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

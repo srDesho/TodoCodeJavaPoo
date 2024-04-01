@@ -86,4 +86,8 @@ public class Controller {
         }
         return null;
     }
+
+    public void deleteUser(int idUser) {
+        persisControl.deleteUser(idUser);
+    }
 }
